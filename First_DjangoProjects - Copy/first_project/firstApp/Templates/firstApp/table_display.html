@@ -1,0 +1,25 @@
+{% extends 'firstApp/base.html' %}
+
+{% block content %}
+
+<div class="container">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Rollno</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for each in data %}
+      <tr>
+        <td>{{each.roll_num }} </td>
+        <td>{{each.Name}} </td>
+        <td>{{each.email}} </td>
+      </tr>
+{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

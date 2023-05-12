@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PGP</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">{{user.username}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+    {% if user.is_authenticated %}
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'masterdetails' %}">MasterDetail</a></li>
+          <li><a href="{% url 'MarkAttendance' %}">Mark_Att</a></li>
+          <li><a href="{% url 'disatt' %}">All_Att</a></li>
+        </ul>
+      </li>
+  
+      <li><a href="{% url 'createpost' %}">Create_Post</a></li>
+      <li><a href="{% url 'allpost' %}">All_Post</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'Logout' %}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="{% url 'Login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% block content %}
+
+{% endblock content %}
+</body>
+</html>

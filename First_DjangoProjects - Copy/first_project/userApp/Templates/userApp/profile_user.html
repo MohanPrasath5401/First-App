@@ -1,0 +1,23 @@
+{% extends 'firstApp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="alert alert-info">
+      
+      <strong><h2>{{legend}}</h2></strong>
+    </div>
+    <h1> Hello {{user1.username}}</h1>
+    <div class = "content-section">
+     <div class = "media">
+       <img src = "{{user1.profile.image.url}}" class="img-circle" width ="200px" height="200px">
+    <br>
+    <p>{{user1.email}}</p>
+    <p> Age : {{user1.profile.age}}</p>
+  </div>
+</div>
+</div>
+{% endblock %}

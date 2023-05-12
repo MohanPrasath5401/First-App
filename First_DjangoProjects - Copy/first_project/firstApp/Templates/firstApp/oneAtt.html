@@ -1,0 +1,45 @@
+{% extends 'firstApp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="alert alert-info">
+      <strong><h2>  {{legend}}</h2></strong>
+    </div>
+
+<form action="" method="POST"><div>
+    {% csrf_token %}
+    {{form.as_p}}
+
+<input type="Submit" value="submit">
+
+</form>
+</div>
+<div class="container">          
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>UID</th>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Date</th>
+          <th>IP Address</th>
+        </tr>
+      </thead>
+      <tbody>
+  {% for each in data %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{each.uid}}</td>
+          <td>{{each.uid.stuname}}</td>
+          <td>{{each.subject_name}}</td>
+          <td>{{each.date1}}</td>
+          <td>{{each.ip_address}}</td>
+        </tr>
+  {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

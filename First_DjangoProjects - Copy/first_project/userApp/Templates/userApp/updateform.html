@@ -1,0 +1,22 @@
+{% extends 'firstApp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="alert alert-info">
+      <strong><h2>  {{legend}}</h2></strong>
+    </div>
+
+<form action="" method="POST" enctype="multipart/form-data"><div>
+    {% csrf_token %}
+    {{u_form.as_p}}
+    {{p_form.as_p}}
+
+<input type="Submit" value="submit">
+
+</form>
+
+</div>
+{% endblock %}
