@@ -1,0 +1,42 @@
+{% extends 'firstApp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+{% if post1.author == user %}
+
+<a class="btn btn-primary" href="{% url 'post-update' post1.id %}">Update</a></button>
+<a class="btn btn-danger" href="{% url 'post-delete' post1.id %}">Delete</a></button>
+{% endif %}
+
+    <div class="alert alert-info">
+      <strong><h2><img src="{{post1.author.profile.image.url}}" class="img-circle" width="100px" height="100px">
+      {{post1.title}}</h2></strong>
+    </div>
+    <br>
+    <p>{{post1.content}}</p>
+<h4>by {{post1.author}} on {{post1.date1}}</h4>
+
+{% for comment in comments %}
+
+{% if user == comment.post.author or comment.approved_comment %}
+{{ comment.create_date }} by {{ comment.author }}
+<p>{{ comment.content }}</p>
+
+{% if not comment.approved_comment %}
+<a class="btn btn-primary" href="{% url 'post-approve' comment.id %}">Approve_Comment</a></button>
+{% endif %} 
+
+{% endif %}
+
+{% endfor %}
+
+<form action="" method='POST'>
+  {% csrf_token %}
+{{ form|crispy }}
+<input type="Submit" value="Reply">  
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'firstApp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+<h1>Class Based</h1>
+
+{% for each_post in posts %}
+    <div class="alert alert-info">
+    <a href="{% url 'other-post-all' each_post.author %}"> All posts of this user</a>
+    <strong><h2><img src ="{{each_post.author.profile.image.url}}" class="img-circle" width="100px" height = "100px">
+    {{each_post.title}}</h2></strong>
+    </div>
+    <br>
+   <p>{{each_post.content|truncatewords:50|linebreaks}}</p>
+   <a href = "{% url 'post-comment' each_post.id %}">Read more</a>
+    <h4>by <a href = "{% url 'profile_user' each_post.author.id %}">{{each_post.author}}</a> {{each_post.author.id}} on {{each_post.date1}} </h4>
+    
+{% endfor %}
+</div>
+       <div class = "pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <a href="?page={{  page_obj.previous_page_number }}"> Previous</a>
+        {% endif %}
+        
+        <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+        
+        {% if page_obj.has_next %}
+        <a href="?page={{  page_obj.next_page_number }}"> Next</a>
+        {% endif %}
+{% endblock %}
